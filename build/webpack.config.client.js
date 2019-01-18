@@ -48,6 +48,16 @@ if(isDev) {//dev测试环境
                         },
                         'less-loader'
                     ]
+                },
+                {
+                  test: /\.css$/, // 针对CSS结尾的文件设置LOADER
+                  use: [{
+                      loader: "style-loader/url"
+                    },
+                    {
+                      loader: "file-loader"
+                    }
+                  ]
                 }
             ]
         },
@@ -83,6 +93,16 @@ if(isDev) {//dev测试环境
                             'less-loader'
                         ]
                     })
+                },
+                {
+                  test: /\.css$/, // 针对CSS结尾的文件设置LOADER
+                  use: [{
+                      loader: "style-loader/url"
+                    },
+                    {
+                      loader: "file-loader"
+                    }
+                  ]
                 }
             ]
         },
