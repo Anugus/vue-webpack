@@ -3,6 +3,10 @@ const { VueLoaderPlugin } = require('vue-loader');
 const vueLoaderOption = require('./vue-loader.config')
 const isDev = process.env.NODE_ENV === 'development'
 
+function resolve(dir) {
+  return path.join(__dirname, '..', dir)
+}
+
 const config = {
   mode: process.env.NODE_ENV || 'production', // development || production
   target: 'web',
@@ -13,6 +17,12 @@ const config = {
       filename: 'bundle.[hash:8].js',
       //打包输出位置
       path: path.join(__dirname,'dist')
+  },
+  resolve: {
+    extensions: ['.js', '.vue', '.json'],
+    alias: {
+      '@': resolve('src')
+    }
   },
   //配置打包文件类型
   module: {
@@ -44,6 +54,12 @@ const config = {
                       }
                   }
               ]
+          },
+          {
+            test: /\.(woff|woff2|eot|ttf|otf)$/,
+            use: [
+              'file-loader'
+            ]
           }
       ]
   },
